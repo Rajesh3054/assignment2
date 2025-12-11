@@ -57,3 +57,35 @@ descriptives <- data_small %>%
   )
 
 
+
+## 5. VISUALISATIONS (for the report) ----
+#   These are your main plot + required histogram.
+
+# 5.1 Boxplot: Stress_Score by Work_Location
+ggplot(data_small, aes(x = Work_Location, y = Stress_Score,
+                       fill = Work_Location)) +
+  geom_boxplot() +
+  labs(
+    title = "Stress Score by Work Mode",
+    x     = "Work Mode",
+    y     = "Stress Score (1 = Low, 3 = High)"
+  ) +
+  theme_minimal()
+
+# (Optional) Save plot for report
+# ggsave("boxplot_stress_by_workmode.png", width = 6, height = 4)
+
+# 5.2 Histogram of Stress_Score (required second graphic)
+ggplot(data_small, aes(x = Stress_Score)) +
+  geom_histogram(binwidth = 1, boundary = 0.5, closed = "right") +
+  scale_x_continuous(breaks = c(1, 2, 3),
+                     labels = c("Low", "Medium", "High")) +
+  labs(
+    title = "Distribution of Stress Scores",
+    x     = "Stress Category",
+    y     = "Number of Employees"
+  ) +
+  theme_minimal()
+
+# ggsave("hist_stress_score.png", width = 6, height = 4)
+
