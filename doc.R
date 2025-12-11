@@ -102,3 +102,12 @@ summary(anova_model)
 eta_squared(anova_model)
 TukeyHSD(anova_model)
 
+## 8. ROBUSTNESS CHECK: KRUSKAL–WALLIS ----
+# Because Stress_Score is ordinal and not perfectly normal, we also run
+# a non-parametric test that does not assume normality.
+
+kw_result <- kruskal.test(Stress_Score ~ Work_Location, data = data_small)
+kw_result
+
+
+
