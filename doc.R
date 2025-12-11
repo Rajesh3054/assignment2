@@ -110,4 +110,10 @@ kw_result <- kruskal.test(Stress_Score ~ Work_Location, data = data_small)
 kw_result
 
 
-
+# Pairwise comparisons with Dunn test (via rstatix)
+# (Gives p-values for each pair of work modes)
+pairwise_wilcox_test(
+  data_small,
+  Stress_Score ~ Work_Location,
+  p.adjust.method = "bonferroni"
+)
