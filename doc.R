@@ -10,6 +10,7 @@ library(car)
 library(effectsize)
 library(rstatix)
 
+
 data <- read.csv("Impact_of_Remote_Work_on_Mental_Health.csv",
                  stringsAsFactors = FALSE)
 
@@ -39,4 +40,20 @@ data_small$Stress_Score <- as.numeric(data_small$Stress_Level)
 summary(data_small$Work_Location)
 summary(data_small$Stress_Level)
 summary(data_small$Stress_Score)
+
+
+## 4. DESCRIPTIVE STATISTICS ----
+
+# 4.1 Counts per work mode
+table(data_small$Work_Location)
+
+# 4.2 Mean and SD of Stress_Score by work mode
+descriptives <- data_small %>%
+  group_by(Work_Location) %>%
+  summarise(
+    n   = n(),
+    mean_stress = mean(Stress_Score, na.rm = TRUE),
+    sd_stress   = sd(Stress_Score, na.rm = TRUE)
+  )
+
 
