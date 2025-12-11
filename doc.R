@@ -89,9 +89,16 @@ ggplot(data_small, aes(x = Stress_Score)) +
 
 # ggsave("hist_stress_score.png", width = 6, height = 4)
 
-# 6. ASSUMPTION CHECKS ----
+# 6. ASSUMPTION CHECKS 
 
 by(data_small$Stress_Score, data_small$Work_Location, shapiro.test)
 
 leveneTest(Stress_Score ~ Work_Location, data = data_small)
+
+# 7. ONE-WAY ANOVA 
+
+anova_model <- aov(Stress_Score ~ Work_Location, data = data_small)
+summary(anova_model)
+eta_squared(anova_model)
+TukeyHSD(anova_model)
 
